@@ -9,13 +9,19 @@ import { VerifyDto } from 'src/auth/dto/verify.dto';
 import { ResendDto } from 'src/auth/dto/resend.dto';
 import { LocalAuthGuard } from 'src/auth/guard/local-auth.guard';
 import { LoginDto } from 'src/auth/dto/login.dto';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
-@Controller('auth')
+@Controller({ path: 'auth', version: '1' })
+@ApiTags('Authentication')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Public()
   @Post('register')
+  @ApiOperation({
+    summary:
+      'Register a user by providing email and password, This is public api',
+  })
   async register(
     @Body() registerDto: RegisterDto,
     @Res({ passthrough: true }) response: Response,
@@ -24,6 +30,7 @@ export class AuthController {
   }
 
   @Post('resend')
+  @ApiOperation({ summary: "Resend an otp to user's emailId" })
   async resend(
     @JwtProcessed() jwtDecoded: JwtResponseInterface,
     @Body() resendDto: ResendDto,
@@ -32,6 +39,7 @@ export class AuthController {
   }
 
   @Post('verify')
+  @ApiOperation({ summary: 'Verify the otp submitted by user' })
   async verifyOtp(
     @JwtProcessed() jwtDecoded: JwtResponseInterface,
     @Body() verifyDto: VerifyDto,
@@ -41,6 +49,7 @@ export class AuthController {
 
   @Public()
   @Post('login')
+  @ApiOperation({ summary: 'Login an user to application' })
   async login(
     @Body() loginDto: LoginDto,
     @Res({ passthrough: true }) response: Response,

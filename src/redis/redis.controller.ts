@@ -1,7 +1,7 @@
 import { Controller } from '@nestjs/common';
 import { RedisService } from './redis.service';
 
-@Controller('redis')
+@Controller({ path: 'redis', version: '1' })
 export class RedisController {
   constructor(private readonly redisService: RedisService) {}
 }

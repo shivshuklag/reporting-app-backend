@@ -39,6 +39,13 @@ export class CheckinsService {
     try {
       const checkins = await this.checkinsRepo.find({
         where: { user_id: jwtDecoded?.id },
+        select: [
+          'id',
+          'prev_day_work',
+          'current_day_work',
+          'blocker',
+          'created_at',
+        ],
       });
 
       return {
