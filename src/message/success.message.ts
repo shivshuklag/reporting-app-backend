@@ -5,4 +5,5 @@ export enum SuccessMessage {
   OTP_VERIFICATION_MESSAGE = 'OTP verified successfully',
   LOGIN_MESSAGE = 'Logged in successfully',
   PROFILE_UPDATE_MESSAGE = 'Profile updated successfully',
+  CHECKIN_SUCCESS = 'Checkin created successfully',
 }

@@ -1,8 +1,10 @@
+import { User } from '../../user/entities/user.entity';
 import { TeamStatusEnum } from '../enum/team_status.enum';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -22,6 +24,9 @@ export class Team {
     enum: TeamStatusEnum,
   })
   status: string;
+
+  @OneToMany(() => User, (user) => user.team)
+  user: User[];
 
   @CreateDateColumn()
   created_at: Date;

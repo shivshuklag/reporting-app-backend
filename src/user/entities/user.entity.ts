@@ -3,11 +3,17 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { UserRoleEnum } from '../enum/user_role.enum';
 import { OnboardingStateEnum } from '../enum/onboarding_state.enum';
+import { Checkins } from '../../checkins/entities/checkins.entity';
+import { Team } from '../../team/entities/team.entity';
 
 @Entity('user')
 export class User {
@@ -55,6 +61,13 @@ export class User {
     enum: OnboardingStateEnum,
   })
   onboarding_state: string;
+
+  @OneToMany(() => Checkins, (checkins) => checkins.user)
+  checkins: Checkins[];
+
+  @ManyToOne(() => Team, (team) => team.id)
+  @JoinColumn({ name: 'team_id' })
+  team: Team;
 
   @CreateDateColumn()
   created_at: Date;
