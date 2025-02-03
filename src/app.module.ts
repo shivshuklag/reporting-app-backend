@@ -15,6 +15,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from 'src/auth/guard/jwt-auth.guard';
 import { TeamModule } from './team/team.module';
 import { CheckinsModule } from './checkins/checkins.module';
+import { RolesGuard } from 'src/auth/guard/roles.guard';
 
 @Module({
   imports: [
@@ -38,6 +39,10 @@ import { CheckinsModule } from './checkins/checkins.module';
     CheckinsModule,
   ],
   controllers: [AppController],
-  providers: [AppService, { provide: APP_GUARD, useClass: JwtAuthGuard }],
+  providers: [
+    AppService,
+    { provide: APP_GUARD, useClass: JwtAuthGuard },
+    { provide: APP_GUARD, useClass: RolesGuard },
+  ],
 })
 export class AppModule {}

@@ -48,6 +48,7 @@ export class AuthService {
     const tokenPayload: TokenPayloadDto = {
       id: createdUser?.id,
       emailId: registerDto?.emailId,
+      role: createdUser?.role,
     };
 
     // Send otp
@@ -98,6 +99,7 @@ export class AuthService {
     const tokenPayload: TokenPayloadDto = {
       id: user?.id,
       emailId: loginDto?.emailId,
+      role: user?.role,
     };
 
     const tokens: Token = await this.getTokens(tokenPayload);

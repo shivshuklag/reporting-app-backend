@@ -3,10 +3,11 @@ import { CheckinsService } from './checkins.service';
 import { JwtProcessed } from 'src/auth/decorator/jwt-response.decorator';
 import { JwtResponseInterface } from 'src/auth/interface/jwt.interface';
 import { CreateCheckinDto } from 'src/checkins/dto/create_checkin.dto';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @Controller({ path: 'checkins', version: '1' })
 @ApiTags('Check Ins')
+@ApiBearerAuth()
 export class CheckinsController {
   constructor(private readonly checkinsService: CheckinsService) {}
 

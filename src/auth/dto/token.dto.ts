@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString } from 'class-validator';
+import { IsEnum, IsString } from 'class-validator';
+import { UserRoleEnum } from 'src/user/enum/user_role.enum';
 
 export class TokenPayloadDto {
   @IsString()
@@ -9,4 +10,7 @@ export class TokenPayloadDto {
   @IsString()
   @ApiProperty({ example: 'abc@gmail.com' })
   emailId: string;
+
+  @IsEnum(UserRoleEnum)
+  role: string;
 }

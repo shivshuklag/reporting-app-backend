@@ -7,9 +7,8 @@ import { JwtProcessed } from 'src/auth/decorator/jwt-response.decorator';
 import { JwtResponseInterface } from 'src/auth/interface/jwt.interface';
 import { VerifyDto } from 'src/auth/dto/verify.dto';
 import { ResendDto } from 'src/auth/dto/resend.dto';
-import { LocalAuthGuard } from 'src/auth/guard/local-auth.guard';
 import { LoginDto } from 'src/auth/dto/login.dto';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @Controller({ path: 'auth', version: '1' })
 @ApiTags('Authentication')
@@ -31,6 +30,7 @@ export class AuthController {
 
   @Post('resend')
   @ApiOperation({ summary: "Resend an otp to user's emailId" })
+  @ApiBearerAuth()
   async resend(
     @JwtProcessed() jwtDecoded: JwtResponseInterface,
     @Body() resendDto: ResendDto,
@@ -40,6 +40,7 @@ export class AuthController {
 
   @Post('verify')
   @ApiOperation({ summary: 'Verify the otp submitted by user' })
+  @ApiBearerAuth()
   async verifyOtp(
     @JwtProcessed() jwtDecoded: JwtResponseInterface,
     @Body() verifyDto: VerifyDto,
