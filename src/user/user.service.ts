@@ -50,6 +50,19 @@ export class UserService {
   async getUserById(userId: string) {
     const user = await this.userRepo.findOne({
       where: { id: userId },
+      relations: ['team'],
+      select: {
+        id: true,
+        email_id: true,
+        email_verified_at: true,
+        first_name: true,
+        last_name: true,
+        onboarding_state: true,
+        team: {
+          id: true,
+          name: true,
+        },
+      },
     });
 
     if (!user) {
