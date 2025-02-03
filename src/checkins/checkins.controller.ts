@@ -4,6 +4,7 @@ import { JwtProcessed } from 'src/auth/decorator/jwt-response.decorator';
 import { JwtResponseInterface } from 'src/auth/interface/jwt.interface';
 import { CreateCheckinDto } from 'src/checkins/dto/create_checkin.dto';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { UpdateCheckinDto } from 'src/checkins/dto/update_checkin.dto';
 
 @Controller({ path: 'checkins', version: '1' })
 @ApiTags('Check Ins')
@@ -27,5 +28,17 @@ export class CheckinsController {
   @ApiOperation({ summary: 'Fetch the chekins submitted by users' })
   async fetchCheckin(@JwtProcessed() jwtDecoded: JwtResponseInterface) {
     return await this.checkinsService.fetchCheckin(jwtDecoded);
+  }
+
+  @Post('update')
+  @ApiOperation({ summary: 'Update the checkins for the curre3nt day' })
+  async updateCheckin(
+    @JwtProcessed() jwtDecoded: JwtResponseInterface,
+    @Body() updateCheckinDto: UpdateCheckinDto,
+  ) {
+    return await this.checkinsService.updateCheckin(
+      jwtDecoded,
+      updateCheckinDto,
+    );
   }
 }

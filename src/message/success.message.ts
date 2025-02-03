@@ -6,4 +6,5 @@ export enum SuccessMessage {
   LOGIN_MESSAGE = 'Logged in successfully',
   PROFILE_UPDATE_MESSAGE = 'Profile updated successfully',
   CHECKIN_SUCCESS = 'Checkin created successfully',
+  CHECKIN_UPDATE_SUCCESS = 'Checkin updated successfully',
 }
