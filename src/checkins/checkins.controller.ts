@@ -31,7 +31,7 @@ export class CheckinsController {
   }
 
   @Post('update')
-  @ApiOperation({ summary: 'Update the checkins for the curre3nt day' })
+  @ApiOperation({ summary: 'Update the checkins for the current day' })
   async updateCheckin(
     @JwtProcessed() jwtDecoded: JwtResponseInterface,
     @Body() updateCheckinDto: UpdateCheckinDto,
@@ -40,5 +40,11 @@ export class CheckinsController {
       jwtDecoded,
       updateCheckinDto,
     );
+  }
+
+  @Get('status')
+  @ApiOperation({ summary: 'Check the status of daily checkin' })
+  async checkinStatus(@JwtProcessed() jwtDecoded: JwtResponseInterface) {
+    return await this.checkinsService.checkinStatus(jwtDecoded);
   }
 }

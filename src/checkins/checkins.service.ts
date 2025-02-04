@@ -6,6 +6,7 @@ import { UpdateCheckinDto } from 'src/checkins/dto/update_checkin.dto';
 import { Checkins } from 'src/checkins/entities/checkins.entity';
 import { ErrorMessage } from 'src/message/error.message';
 import { SuccessMessage } from 'src/message/success.message';
+import { getCurrentDateAtMidnight } from 'src/utils/get_date_only.util';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -20,13 +21,14 @@ export class CheckinsService {
     createCheckinDto: CreateCheckinDto,
   ) {
     try {
-      await this.checkinsRepo.insert({
+      const createCheckin = await this.checkinsRepo.insert({
         ...createCheckinDto,
         user_id: jwtDecoded?.id,
       });
       return {
         status: SuccessMessage.SUCCESS,
         message: SuccessMessage.CHECKIN_SUCCESS,
+        checkin_id: createCheckin.generatedMaps[0].id,
       };
     } catch (err) {
       return {
@@ -92,5 +94,22 @@ export class CheckinsService {
         message: err.message,
       };
     }
+  }
+
+  async checkinStatus(jwtDecoded: JwtResponseInterface) {
+    const checkin = await this.checkinsRepo.findOne({
+      where: { user_id: jwtDecoded?.id },
+      order: { created_at: 'DESC' },
+    });
+
+    if (checkin.created_at.toDateString() > getCurrentDateAtMidnight()) {
+      return {
+        status: SuccessMessage.SUCCESS,
+      };
+    }
+
+    return {
+      status: SuccessMessage.FALSE,
+    };
   }
 }
