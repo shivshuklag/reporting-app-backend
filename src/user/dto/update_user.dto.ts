@@ -6,6 +6,7 @@ import { UserStatusEnum } from 'src/user/enum/user_status.enum';
 export class UpdateUserDto {
   @IsString()
   @ApiProperty({ example: 'abc@gmail.com' })
+  @IsOptional()
   email_id: string;
 
   @IsString()
@@ -42,5 +43,6 @@ export class UpdateUserDto {
 
   @IsString()
   @ApiProperty({ example: 'signup' })
+  @IsOptional()
   onboarding_state: string;
 }
