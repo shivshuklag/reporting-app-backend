@@ -49,6 +49,9 @@ export class CheckinsService {
           'blocker',
           'created_at',
         ],
+        order: {
+          created_at: 'DESC',
+        },
       });
 
       return {
@@ -102,7 +105,7 @@ export class CheckinsService {
       order: { created_at: 'DESC' },
     });
 
-    if (checkin.created_at.toDateString() > getCurrentDateAtMidnight()) {
+    if (checkin.created_at > new Date(getCurrentDateAtMidnight())) {
       return {
         status: SuccessMessage.SUCCESS,
       };
