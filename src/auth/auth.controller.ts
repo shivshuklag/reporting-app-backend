@@ -1,13 +1,13 @@
 import { Body, Controller, Post, Res, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { Public } from 'src/auth/decorator/public.decorator';
-import { RegisterDto } from 'src/auth/dto/register.dto';
+import { Public } from './decorator/public.decorator';
+import { RegisterDto } from './dto/register.dto';
 import { Response } from 'express';
-import { JwtProcessed } from 'src/auth/decorator/jwt-response.decorator';
-import { JwtResponseInterface } from 'src/auth/interface/jwt.interface';
-import { VerifyDto } from 'src/auth/dto/verify.dto';
-import { ResendDto } from 'src/auth/dto/resend.dto';
-import { LoginDto } from 'src/auth/dto/login.dto';
+import { JwtProcessed } from './decorator/jwt-response.decorator';
+import { JwtResponseInterface } from './interface/jwt.interface';
+import { VerifyDto } from './dto/verify.dto';
+import { ResendDto } from './dto/resend.dto';
+import { LoginDto } from './dto/login.dto';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @Controller({ path: 'auth', version: '1' })

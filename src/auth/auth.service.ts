@@ -1,25 +1,25 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { RegisterDto } from 'src/auth/dto/register.dto';
-import { TokenPayloadDto } from 'src/auth/dto/token.dto';
-import { Token } from 'src/auth/interface/token.interface';
-import { configService } from 'src/config/config.service';
-import { ErrorMessage } from 'src/message/error.message';
-import { UserService } from 'src/user/user.service';
+import { RegisterDto } from './dto/register.dto';
+import { TokenPayloadDto } from './dto/token.dto';
+import { Token } from './interface/token.interface';
+import { configService } from '../config/config.service';
+import { ErrorMessage } from '../message/error.message';
+import { UserService } from '../user/user.service';
 import { Response } from 'express';
-import { EnvironmentEnum } from 'src/auth/enum/environment.enum';
-import { JwtResponseInterface } from 'src/auth/interface/jwt.interface';
-import { VerifyDto } from 'src/auth/dto/verify.dto';
-import { generateOtp } from 'src/utils/generate_otp.util';
+import { EnvironmentEnum } from './enum/environment.enum';
+import { JwtResponseInterface } from './interface/jwt.interface';
+import { VerifyDto } from './dto/verify.dto';
+import { generateOtp } from '../utils/generate_otp.util';
 import { MailerService } from '@nestjs-modules/mailer';
-import { OTP_TEMPALTE } from 'src/mailer/templates/otp.template';
-import { SuccessMessage } from 'src/message/success.message';
-import { getCurrentDateTimeIST } from 'src/utils/ist_date_time.util';
-import { LoginDto } from 'src/auth/dto/login.dto';
-import { verifyHash } from 'src/utils/verify_hash.util';
-import { RedisService } from 'src/redis/redis.service';
-import { generateHash } from 'src/utils/hash_string.util';
-import { OnboardingStateEnum } from 'src/user/enum/onboarding_state.enum';
+import { OTP_TEMPALTE } from '../mailer/templates/otp.template';
+import { SuccessMessage } from '../message/success.message';
+import { getCurrentDateTimeIST } from '../utils/ist_date_time.util';
+import { LoginDto } from './dto/login.dto';
+import { verifyHash } from '../utils/verify_hash.util';
+import { RedisService } from '../redis/redis.service';
+import { generateHash } from '../utils/hash_string.util';
+import { OnboardingStateEnum } from '../user/enum/onboarding_state.enum';
 
 export const cookieOptions = {
   sameSite: 'none' as const,

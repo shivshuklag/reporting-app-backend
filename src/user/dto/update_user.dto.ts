@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsDate, IsEnum, IsOptional, IsString } from 'class-validator';
-import { UserRoleEnum } from 'src/user/enum/user_role.enum';
-import { UserStatusEnum } from 'src/user/enum/user_status.enum';
+import { UserRoleEnum } from '../enum/user_role.enum';
+import { UserStatusEnum } from '../enum/user_status.enum';
 
 export class UpdateUserDto {
   @IsString()

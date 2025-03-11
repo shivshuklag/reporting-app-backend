@@ -9,13 +9,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
-import { configService } from 'src/config/config.service';
-import databaseConfig from 'src/config/database.config';
+import { configService } from './config/config.service';
+import databaseConfig from './config/database.config';
 import { APP_GUARD } from '@nestjs/core';
-import { JwtAuthGuard } from 'src/auth/guard/jwt-auth.guard';
+import { JwtAuthGuard } from './auth/guard/jwt-auth.guard';
 import { TeamModule } from './team/team.module';
 import { CheckinsModule } from './checkins/checkins.module';
-import { RolesGuard } from 'src/auth/guard/roles.guard';
+import { RolesGuard } from './auth/guard/roles.guard';
+import { DataSource } from 'typeorm';
 
 @Module({
   imports: [

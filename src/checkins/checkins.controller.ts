@@ -1,10 +1,10 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { CheckinsService } from './checkins.service';
-import { JwtProcessed } from 'src/auth/decorator/jwt-response.decorator';
-import { JwtResponseInterface } from 'src/auth/interface/jwt.interface';
-import { CreateCheckinDto } from 'src/checkins/dto/create_checkin.dto';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { UpdateCheckinDto } from 'src/checkins/dto/update_checkin.dto';
+import { JwtProcessed } from '../auth/decorator/jwt-response.decorator';
+import { JwtResponseInterface } from '../auth/interface/jwt.interface';
+import { CheckinsService } from './checkins.service';
+import { CreateCheckinDto } from './dto/create_checkin.dto';
+import { UpdateCheckinDto } from './dto/update_checkin.dto';
 
 @Controller({ path: 'checkins', version: '1' })
 @ApiTags('Check Ins')

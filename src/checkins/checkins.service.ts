@@ -1,12 +1,12 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { JwtResponseInterface } from 'src/auth/interface/jwt.interface';
-import { CreateCheckinDto } from 'src/checkins/dto/create_checkin.dto';
-import { UpdateCheckinDto } from 'src/checkins/dto/update_checkin.dto';
-import { Checkins } from 'src/checkins/entities/checkins.entity';
-import { ErrorMessage } from 'src/message/error.message';
-import { SuccessMessage } from 'src/message/success.message';
-import { getCurrentDateAtMidnight } from 'src/utils/get_date_only.util';
+import { JwtResponseInterface } from '../auth/interface/jwt.interface';
+import { CreateCheckinDto } from './dto/create_checkin.dto';
+import { UpdateCheckinDto } from './dto/update_checkin.dto';
+import { Checkins } from './entities/checkins.entity';
+import { ErrorMessage } from '../message/error.message';
+import { SuccessMessage } from '../message/success.message';
+import { getCurrentDateAtMidnight } from '../utils/get_date_only.util';
 import { Repository } from 'typeorm';
 
 @Injectable()
